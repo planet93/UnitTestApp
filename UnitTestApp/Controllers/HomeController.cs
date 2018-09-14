@@ -42,5 +42,22 @@ namespace UnitTestApp.Controllers
 
             return View();
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Computer c)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.Create(c);
+                repo.Save();
+                return RedirectToAction("Index");
+            }
+            return View("Create");
+        }
     }
 }
